@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { PromotionComponent } from './promotion/promotion.component';
 import { ProduitComponent } from './produit/produit.component';
 import { PromotionsComponent } from './promotions/promotions.component';
+import { PromotionNewComponent } from './promotion-new/promotion-new.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PromotionsComponent } from './promotions/promotions.component';
     AppComponent,
     PromotionComponent,
     ProduitComponent,
-    PromotionsComponent
+    PromotionsComponent,
+    PromotionNewComponent
   ],
   imports: [
     BrowserModule,
