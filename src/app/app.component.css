@@ -1,0 +1,17 @@
+.nav-bar{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  justify-items: space-between;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  padding: 1rem;
+}
+
+.nav-bar a{
+  color: rgb(48, 48, 243);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-align: center;
+}
