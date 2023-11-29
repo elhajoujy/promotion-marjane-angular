@@ -5,9 +5,9 @@ import { Promotion } from '../../model/promotion.model';
 
 @Component({
   selector: 'app-promotions',
-  // standalone: true,
   templateUrl: './promotions.component.html',
-  styleUrls: ['./promotions.component.css']
+  styleUrls: ['./promotions.component.css'],
+
 })
 export class PromotionsComponent {
   url:string  = "http://localhost:8080/api/v1/promotions"
@@ -17,7 +17,6 @@ export class PromotionsComponent {
   ngOnInit(): void {
     this.http.get<Array<Promotion>>(this.url).subscribe({
       next: data => {
-        console.log(data);
         this.promotions = data;
       },
       error: error => {
