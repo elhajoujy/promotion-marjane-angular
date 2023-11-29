@@ -1,1 +1,39 @@
-<p>dashboard-responsable works!</p>
+<div class="container m-container">
+  <h5 class="m-title alert alert-success mt-4 display-7">Dashboard Responsable</h5>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <div *ngIf="ListPromotions.length > 0">
+    <h2>Promotion List</h2>
+    <ul class="list-group">
+      <li *ngFor="let promotion of ListPromotions" class="list-group-item">
+        <div>
+          <strong>Description:</strong> {{ promotion.description }}
+        </div>
+        <div class="d-flex gap-2">
+          <strong>Start Date:</strong> {{ promotion.dateDebut | date }}
+          <strong>End Date:</strong> {{ promotion.dateFin | date }}
+        </div>
+        <div>
+          <strong>Percentage:</strong> {{ promotion.precentage }}%
+        </div>
+        <div>
+          <strong>Status:</strong> {{ promotion.status }}
+        </div>
+        <div>
+          <a [routerLink]="['/dashboard-responsable/promotion', promotion.id]">Details</a>
+        </div>
+        <div class="mt-2">
+          <button *ngIf="promotion.status !== 'ACCEPTER'" class="btn btn-success" (click)="acceptPromotion(promotion.id)">Accept</button>
+          <button *ngIf="promotion.status !== 'REFUSER'" class="btn btn-danger" (click)="refusePromotion(promotion.id)">Refuse</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="ListPromotions.length === 0" class="alert alert-info" role="alert">
+    No promotions available.
+  </div>
+</div>
