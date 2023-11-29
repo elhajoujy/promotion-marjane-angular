@@ -1,0 +1,23 @@
+<div class="container">
+
+  <table class="table table-striped mt-4 text-center">
+    <thead  class="thead-dark" >
+      <th scope="col p-2">id</th>
+      <th scope="col p-2">precentage</th>
+      <th scope="col p-2">description</th>
+      <th scope="col p-2">status</th>
+      <th scope="col p-2">Action</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of promotions">
+        <td scope="row">{{item.id}}</td>
+        <td scope="row">{{item.precentage}}</td>
+        <td scope="row">{{item.description}}</td>
+        <td scope="row">{{item.status}}</td>
+        <td scope="row d-grid gap-3">
+          <button class="btn btn-primary m-2 " (click)="edit(item)">Edit</button>
+          <button class="btn btn-danger m-2" (click)="delete(item)">Delete</button>
+        </td>
+      </tr>
+  </table>
+</div>
