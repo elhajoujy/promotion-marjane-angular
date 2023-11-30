@@ -4,6 +4,8 @@ import { IUser } from '../../model/user.model';
 import { Promotion } from 'src/app/model/promotion.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Token } from '@angular/compiler';
+import { ResponsablePromotionRequest } from 'src/app/model/ResponsablePromotionRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,7 @@ import { Observable } from 'rxjs';
 export class ResponsableService  implements OnInit  {
 
   ListPromotion: Array<Promotion>= [];
+  token:string = "";
   constructor(
     @Inject(AuthentificationService) private authService:AuthentificationService,
     private http: HttpClient
@@ -30,10 +33,14 @@ export class ResponsableService  implements OnInit  {
     var url = "http://localhost:8080/api/v1/responsables-rayon/promotions";
     return this.http.get<Array<Promotion>>(url, {
       headers:{
-        "Authorization": "Bearer  something over the rainbow"
+        "Authorization": `Bearer ${this.authService.getToken()}`
       }
     });
+
   }
 
+  approuverOuRefuserPromotion(promotionInformation:ResponsablePromotionRequest):boolean{
+    return true;
+  }
 
 }
