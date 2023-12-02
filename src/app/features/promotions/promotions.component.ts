@@ -3,8 +3,6 @@ import { Component } from '@angular/core';
 import { Promotion } from '../../model/promotion.model';
 
 import { ActivatedRoute } from '@angular/router';
-
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PromotionService } from 'src/app/services/promotion/promotion.service';
 
@@ -29,7 +27,9 @@ export class PromotionsComponent {
 
   public promotionForm! : FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private promotionService: PromotionService ){
+  constructor(private http: HttpClient,
+    private route : ActivatedRoute,
+    private fb: FormBuilder, private promotionService: PromotionService ){
   }
 
   openPopup(){
@@ -78,7 +78,7 @@ export class PromotionsComponent {
   //     },
   //     error: err => {
   //       console.log(err);
-        
+
   //     }
   //   })
   // }
