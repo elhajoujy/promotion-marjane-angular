@@ -9,6 +9,8 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
 import { DashboardResponsableComponent } from './features/dashboard-responsable/dashboard-responsable.component';
 import { AdminDashboardComponent } from './features/dashboard-admin/admin-dashboard.component';
+import { PopupComponent } from './shared/popup/popup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,11 +21,13 @@ import { AdminDashboardComponent } from './features/dashboard-admin/admin-dashbo
     PromotionsComponent,
     FooterComponent,
     NavBarComponent,
-    DashboardResponsableComponent
+    DashboardResponsableComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

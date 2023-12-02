@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Promotion } from '../../model/promotion.model';
-import { PromoitonService } from 'src/app/services/promotion/promoiton.service';
+
 import { ActivatedRoute } from '@angular/router';
 
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PromotionService } from 'src/app/services/promotion/promotion.service';
 
 
 @Component({
@@ -14,14 +17,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PromotionsComponent {
 
+
   title = ' title promotion';
   ListPromotions: Array<Promotion> = [];
   page:number = 0;
   size:number = 0;
   totalPages : number = 0;
 
+  url:string  = "http://localhost:8089/api/v1/promotions"
+  isPopupVisible = false;
 
-  constructor(private promotionService : PromoitonService , private route: ActivatedRoute){
+  public promotionForm! : FormGroup;
+
+  constructor(private http: HttpClient, private fb: FormBuilder, private promotionService: PromotionService ){
+  }
+
+  openPopup(){
+    this.isPopupVisible = true;
+  }
+  closePopup(){
+    this.isPopupVisible = false;
   }
 
 
@@ -40,14 +55,33 @@ export class PromotionsComponent {
         console.log(error.error.message);
         error.error.message;
       }
+    });
 
-    })
+    // this.promotionForm = this.fb.group({
+    //   description: this.fb.control('', [Validators.required]),
+    //   status: this.fb.control('',[Validators.required]),
+    //   precentage: this.fb.control(0,[Validators.required]),
+    //   dateDebut : this.fb.control('',[Validators.required]),
+    //   dateFin: this.fb.control('',[Validators.required])
+    // })
 
   });
 
   }
 
 
+  // savePromotion(){
+  //   let promotion: Promotion = this.promotionForm.value;
+  //   this.promotionService.savePromotion(promotion).subscribe({
+  //     next: data =>{
+  //       alert(JSON.stringify(data));
+  //     },
+  //     error: err => {
+  //       console.log(err);
+        
+  //     }
+  //   })
+  // }
 
   findProductById(id:number) {
 
@@ -62,6 +96,11 @@ export class PromotionsComponent {
   edit(_t40: any) {
     throw new Error('Method not implemented.');
   }
+
+  // openPopup(){
+  //   this.modalService.open('myModal');
+  // }
+
 
 
 

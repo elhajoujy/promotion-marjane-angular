@@ -1,5 +1,10 @@
 <div class="container">
-
+  <div class="d-flex justify-content-end pt-3">
+    <button (click)="openPopup()" class="btn btn-primary">
+      <i class="bi bi-plus"></i>
+    </button>
+  </div>
+  <app-popup *ngIf="isPopupVisible" (closePopup)="closePopup()"></app-popup>
   <table class="table table-striped mt-4 text-center">
     <thead  class="thead-dark" >
       <th scope="col p-2">id</th>
