@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Promotion } from '../../model/promotion.model';
+
+import { ActivatedRoute } from '@angular/router';
+
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PromotionService } from 'src/app/services/promotion/promotion.service';
 
@@ -12,8 +16,15 @@ import { PromotionService } from 'src/app/services/promotion/promotion.service';
 
 })
 export class PromotionsComponent {
-  url:string  = "http://localhost:8089/api/v1/promotions"
+
+
   title = ' title promotion';
+  ListPromotions: Array<Promotion> = [];
+  page:number = 0;
+  size:number = 0;
+  totalPages : number = 0;
+
+  url:string  = "http://localhost:8089/api/v1/promotions"
   isPopupVisible = false;
 
   public promotionForm! : FormGroup;
@@ -30,12 +41,19 @@ export class PromotionsComponent {
 
 
   ngOnInit(): void {
-    this.http.get<Array<Promotion>>(this.url).subscribe({
+    //get query params else set default value
+  this.route.queryParams.subscribe(params => {
+    this.page = params['page'] || 1;
+    this.size = params['size'] || 6;
+    this.promotionService.getByPage(this.page,this.size).subscribe({
       next: data => {
-        this.promotions = data;
+        this.ListPromotions = data.content as Promotion[];
+        this.totalPages = data.totalPages;
       },
       error: error => {
         console.error('There was an error!', error);
+        console.log(error.error.message);
+        error.error.message;
       }
     });
 
@@ -47,7 +65,10 @@ export class PromotionsComponent {
     //   dateFin: this.fb.control('',[Validators.required])
     // })
 
+  });
+
   }
+
 
   // savePromotion(){
   //   let promotion: Promotion = this.promotionForm.value;
@@ -63,15 +84,7 @@ export class PromotionsComponent {
   // }
 
   findProductById(id:number) {
-    this.http.get<any>(this.url + "/" + id ).subscribe({
-      next: data => {
-        this.promotions = data;
-      },
-      error: error => {
-        console.error('There was an error!', error);
-      }
 
-    })
   }
 
   update(id:number) {
@@ -90,6 +103,6 @@ export class PromotionsComponent {
 
 
 
-  promotions:Array<Promotion> = [];
+
 
 }

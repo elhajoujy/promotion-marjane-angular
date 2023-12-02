@@ -14,7 +14,7 @@
       <th scope="col p-2">Action</th>
     </thead>
     <tbody>
-      <tr *ngFor="let item of promotions">
+      <tr *ngFor="let item of ListPromotions">
         <td scope="row">{{item.id}}</td>
         <td scope="row">{{item.precentage}}</td>
         <td scope="row">{{item.description}}</td>
@@ -25,4 +25,35 @@
         </td>
       </tr>
   </table>
+  <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link"
+      [routerLink]="['/admin/dashboard']"
+      [queryParams]="{page: page-1}"
+
+      aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    <li *ngFor="let page of [].constructor(totalPages); let i = index" class="page-item">
+      <a class="page-link"
+       [routerLink]="['/admin/dashboard']"
+       [queryParams]="{page: i+1}"
+       >
+        {{i + 1}}
+      </a></li>
+
+    <li class="page-item">
+      <a class="page-link"
+      [routerLink]="['/admin/dashboard']"
+      [queryParams]="{page: +page+1}"
+      aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 </div>
