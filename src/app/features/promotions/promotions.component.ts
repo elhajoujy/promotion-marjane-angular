@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Promotion } from '../../model/promotion.model';
+import { PromoitonService } from 'src/app/services/promotion/promoiton.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 
 @Component({
@@ -10,33 +13,44 @@ import { Promotion } from '../../model/promotion.model';
 
 })
 export class PromotionsComponent {
-  url:string  = "http://localhost:8080/api/v1/promotions"
+
   title = ' title promotion';
-  constructor(private http: HttpClient  ){
+  ListPromotions: Array<Promotion> = [];
+  page:number = 0;
+  size:number = 0;
+  totalPages : number = 0;
+
+
+  constructor(private promotionService : PromoitonService , private route: ActivatedRoute){
   }
+
+
   ngOnInit(): void {
-    this.http.get<Array<Promotion>>(this.url).subscribe({
+    //get query params else set default value
+  this.route.queryParams.subscribe(params => {
+    this.page = params['page'] || 1;
+    this.size = params['size'] || 6;
+    this.promotionService.getByPage(this.page,this.size).subscribe({
       next: data => {
-        this.promotions = data;
+        this.ListPromotions = data.content as Promotion[];
+        this.totalPages = data.totalPages;
       },
       error: error => {
         console.error('There was an error!', error);
+        console.log(error.error.message);
+        error.error.message;
       }
 
     })
 
+  });
+
   }
+
+
 
   findProductById(id:number) {
-    this.http.get<any>(this.url + "/" + id ).subscribe({
-      next: data => {
-        this.promotions = data;
-      },
-      error: error => {
-        console.error('There was an error!', error);
-      }
 
-    })
   }
 
   update(id:number) {
@@ -50,6 +64,6 @@ export class PromotionsComponent {
   }
 
 
-  promotions:Array<Promotion> = [];
+
 
 }

@@ -8,6 +8,7 @@ import { IUser } from '../model/user.model';
 export class AuthentificationService  implements IUser{
 
   constructor(){
+    this.token = "token";
   }
   username!: string;
   password!: string;
@@ -27,6 +28,9 @@ export class AuthentificationService  implements IUser{
   }
   getRole(): string {
     throw new Error('Method not implemented.');
+  }
+  getToken(): string {
+    return this.token;
   }
 
 

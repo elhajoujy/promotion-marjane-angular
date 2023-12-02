@@ -25,8 +25,10 @@
         <div>
           <a [routerLink]="['/dashboard-responsable/promotion', promotion.id]">Details</a>
         </div>
-        <div class="mt-2">
-          <button *ngIf="promotion.status !== 'ACCEPTER'" class="btn btn-success" (click)="acceptPromotion(promotion.id)">Accept</button>
+        <div>
+        </div>
+        <div class="mt-2 d-flex gap-3">
+          <button *ngIf="promotion.status !== 'ACCPETER'" class="btn btn-success" (click)="acceptPromotion(promotion.id)">Accept</button>
           <button *ngIf="promotion.status !== 'REFUSER'" class="btn btn-danger" (click)="refusePromotion(promotion.id)">Refuse</button>
         </div>
       </li>
