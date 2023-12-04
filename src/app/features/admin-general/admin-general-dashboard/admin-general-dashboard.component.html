@@ -1,7 +1,7 @@
 
 <div class="container ">
   <h6 class="m-title alert alert-info  mt-4 display-7">Dashboard Admin General  </h6>
-  <div class="d-flex   gap-2 justify-content-between text-centre">
+  <div r class="d-flex   gap-2 justify-content-between text-centre" *ngIf="promotionsStatistiques!=undefined ; else error"  >
     <div class="col-md-4 ">
       <div class="card alert alert-success">
         <div class="card-body">
@@ -41,6 +41,9 @@
       </div>
     </div>
   </div>
+  <ng-template #error>
+    error loading promotions statistiques
+  </ng-template>
   <div class="input-group">
     <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
     <button type="button" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
