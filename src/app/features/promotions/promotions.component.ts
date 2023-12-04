@@ -43,8 +43,8 @@ export class PromotionsComponent {
   ngOnInit(): void {
     //get query params else set default value
   this.route.queryParams.subscribe(params => {
-    this.page = params['page'] || 1;
-    this.size = params['size'] || 6;
+    this.page = params['page'] || 0;
+    this.size = params['size'] || 5;
     this.promotionService.getByPage(this.page,this.size).subscribe({
       next: data => {
         this.ListPromotions = data.content as Promotion[];
