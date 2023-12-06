@@ -58,7 +58,6 @@ export class ResponsableService  implements OnInit  {
         throw err;
       }
     ));
-
   }
 
 

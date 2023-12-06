@@ -1,50 +1,48 @@
-
 <!-- popup.component.html -->
 <div class="popup-container modal z-3 ">
     <div>
-      <h1>Add promotion</h1>
+        <h1>update Promotion</h1>
     </div>
     <div class="popup">
-        {{promotionForm.value | json}}
-      <form [formGroup]="promotionForm" (ngSubmit)="savePromotion()" id="jsonForm">
+      <form  id="jsonForm">
         <div class="form-group">
           <label for="createdAt">Created At</label>
-          <input type="date" class="form-control" id="createdAt" formControlName="createdAt">
+          <input type="date" class="form-control" id="createdAt" >
         </div>
 
         <div class="form-group">
           <label for="updatedAt">Updated At</label>
-          <input type="date" class="form-control" id="updatedAt" formControlName="updatedAt">
+          <input type="date" class="form-control" id="updatedAt" >
         </div>
 
         <div class="form-group">
           <label for="percentage">Percentage</label>
-          <input type="number" class="form-control" id="percentage" formControlName="precentage">
+          <input type="number" class="form-control" id="percentage" >
         </div>
 
         <div class="form-group">
           <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" formControlName="description">
+          <input type="text" class="form-control" id="description" >
         </div>
 
         <div class="form-group">
           <label for="status">Status</label>
-          <input type="text" class="form-control" id="status" formControlName="status">
+          <input type="text" class="form-control" id="status" >
         </div>
 
         <div class="form-group">
           <label for="startDate">Start Date</label>
-          <input type="date" class="form-control" id="startDate" formControlName="dateDebut">
+          <input type="date" class="form-control" id="startDate" >
         </div>
 
         <div class="form-group">
           <label for="endDate">End Date</label>
-          <input type="date" class="form-control" id="endDate" formControlName="dateFin">
+          <input type="date" class="form-control" id="endDate" >
         </div>
 
         <div class="form-group">
-            <label for="category">Category</label>
-          <select class="form-control" name="" id="" formControlName="category">
+            <label>Category</label>
+          <select class="form-control" name="" id="" >
             <option value="">choice category...</option>
             <option value="test1">test1</option>
             <option value="test2">test2</option>

@@ -22,8 +22,10 @@ export class PromotionsComponent {
   size:number = 0;
   totalPages : number = 0;
 
-  url:string  = "http://localhost:8089/api/v1/promotions"
+  url:string  = "http://localhost:8080/promoitons"
   isPopupVisible = false;
+  isPopupUpdateVisibile = false;
+  Promotions: Array<any> = [];
 
   public promotionForm! : FormGroup;
 
@@ -38,6 +40,13 @@ export class PromotionsComponent {
   closePopup(){
     this.isPopupVisible = false;
   }
+  openPopupUpdate(){
+    this.isPopupUpdateVisibile = true;
+  }
+  closePopupUpdate(){
+    this.isPopupUpdateVisibile = false;
+  }
+
 
 
   ngOnInit(): void {
@@ -67,21 +76,42 @@ export class PromotionsComponent {
 
   });
 
+  this.promotionService.getPromotions().subscribe({
+    next: data => {
+      this.Promotions =data
+    },
+    error: err => {
+      console.log(err);
+      
+    }
+  });
+
   }
 
 
-  // savePromotion(){
-  //   let promotion: Promotion = this.promotionForm.value;
-  //   this.promotionService.savePromotion(promotion).subscribe({
-  //     next: data =>{
-  //       alert(JSON.stringify(data));
-  //     },
-  //     error: err => {
-  //       console.log(err);
+  handleDelete(promotion: Promotion){
+    if(confirm("etes vous sure?"))
+    this.promotionService.deletePromotion(promotion).subscribe({
+      next: value => {
+        //this.getProducts();
+        this.Promotions.filter(p => p.id != promotion.id);
+        location.reload();
+      }
+    })
+  }
 
-  //     }
-  //   })
-  // }
+
+  savePromotion(){
+    let promotion: Promotion = this.promotionForm.value;
+    this.promotionService.savePromotion(promotion).subscribe({
+      next: data =>{
+        alert(JSON.stringify(data));
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+  }
 
   findProductById(id:number) {
 

@@ -8,14 +8,20 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class PromotionService {
-  url:string  = "http://localhost:8080/api/v1/promotions"
+  url:string  = "http://localhost:8080/promoitons"
   constructor(private http: HttpClient) { }
 
   public savePromotion(promotion: Promotion): Observable<Promotion>{
-    return this.http.post<Promotion>(`${environment.backendHost}/api/v1/admin_centres/promotions`, promotion);
+    return this.http.post<Promotion>(`${environment.backendHost}/promoitons`, promotion);
   }
   getByPage(page:number, size:number):Observable<any> {
-    return this.http.get<any>(environment.backendHost + "/api/v1/promotions" + "?page=" + page + "&size=" + size);
+    return this.http.get<any>(environment.backendHost + "/promoitons" + "?page=" + page + "&size=" + size);
+  }
+  getPromotions(){
+    return this.http.get<any>(environment.backendHost + "/promoitons");
+  }
+  deletePromotion(promotion: Promotion){
+    return this.http.delete<any>(environment.backendHost + `/promoitons/${promotion.id}`);
   }
 
 
