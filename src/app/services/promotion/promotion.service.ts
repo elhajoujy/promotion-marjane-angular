@@ -24,9 +24,9 @@ export class PromotionService {
       // TODO: change endpoint of json server api to spring boot api
     return this.http.get<any>(environment.backendHost + "/api/v1/promotions");
   }
-  deletePromotion(promotion: Promotion){
+  deletePromotion(promotion: Promotion):Observable<any>{
       // TODO: change endpoint of json server api to spring boot api
-    return this.http.delete<any>(environment.backendHost + `/api/v1/promotions/${promotion.id}`);
+    return this.http.delete<any>(environment.backendHost + `/api/v1/admin_centres/promotions/${promotion.id}`);
   }
 
 

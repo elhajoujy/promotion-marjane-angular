@@ -26,7 +26,7 @@ import { PopupUpdateComponent } from './shared/popup-update/popup-update.compone
     NavBarComponent,
     DashboardResponsableComponent,
     PopupComponent,
-    AdminGeneralDashboardComponent
+    AdminGeneralDashboardComponent,
     PopupUpdateComponent
   ],
   imports: [

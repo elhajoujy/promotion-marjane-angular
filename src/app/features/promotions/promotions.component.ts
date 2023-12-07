@@ -17,6 +17,7 @@ export class PromotionsComponent {
 
 
   title = ' title promotion';
+  message!:string ;
   ListPromotions: Array<Promotion> = [];
   page:number = 0;
   size:number = 0;
@@ -75,16 +76,22 @@ export class PromotionsComponent {
     // })
 
   });
+  this.fetchPromotions();
 
-  this.promotionService.getPromotions().subscribe({
-    next: data => {
-      this.ListPromotions =data.content as Promotion[];
-    },
-    error: err => {
-      console.log(err);
 
-    }
-  });
+  }
+
+
+  fetchPromotions(){
+    this.promotionService.getPromotions().subscribe({
+      next: data => {
+        this.ListPromotions =data.content as Promotion[];
+      },
+      error: err => {
+        console.log(err);
+
+      }
+    });
 
   }
 
@@ -93,9 +100,22 @@ export class PromotionsComponent {
     if(confirm("etes vous sure?"))
     this.promotionService.deletePromotion(promotion).subscribe({
       next: value => {
-        //this.getProducts();
-        this.ListPromotions.filter(p => p.id != promotion.id);
-        location.reload();
+        //this.getProducts()
+        // this.ListPromotions.filter(p => p.id != promotion.id);
+        this.message = value.error.text;
+        this.fetchPromotions();
+
+        console.log(value);
+        // location.reload();
+      },
+      error: err => {
+        console.log(err);
+        this.message = err.error.text;
+        //TODO : wait 5 seconds and hide message
+        setTimeout(() => {
+          this.message = "";
+        }, 3000);
+        this.fetchPromotions();
       }
     })
   }
