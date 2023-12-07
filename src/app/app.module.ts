@@ -12,6 +12,8 @@ import { AdminDashboardComponent } from './features/dashboard-admin/admin-dashbo
 import { PopupComponent } from './shared/popup/popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminGeneralDashboardComponent } from './features/admin-general/admin-general-dashboard/admin-general-dashboard.component';
+import { PopupUpdateComponent } from './shared/popup-update/popup-update.component';
+
 
 
 @NgModule({
@@ -25,14 +27,14 @@ import { AdminGeneralDashboardComponent } from './features/admin-general/admin-g
     DashboardResponsableComponent,
     PopupComponent,
     AdminGeneralDashboardComponent
+    PopupUpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
-
   ],
-  providers: [],
+  providers: [ Location ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

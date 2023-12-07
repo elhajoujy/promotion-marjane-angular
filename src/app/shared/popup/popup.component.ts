@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RouteConfigLoadStart, Router } from '@angular/router';
 import { Promotion } from 'src/app/model/promotion.model';
 import { PromotionService } from 'src/app/services/promotion/promotion.service';
+
 
 @Component({
   selector: 'app-popup',
@@ -14,7 +16,7 @@ export class PopupComponent implements OnInit{
   public promotionForm! : FormGroup;
 
 
-  constructor(private fb: FormBuilder, private promotionService: PromotionService){
+  constructor(private fb: FormBuilder, private promotionService: PromotionService, private router: Router){
     
   }
   
@@ -23,11 +25,14 @@ export class PopupComponent implements OnInit{
   }
   ngOnInit(){
     this.promotionForm = this.fb.group({
+      createdAt: this.fb.control('',[Validators.required]),
+      updatedAt: this.fb.control('',[Validators.required]),
       description: this.fb.control('', [Validators.required]),
       status: this.fb.control('',[Validators.required]),
       precentage: this.fb.control(0,[Validators.required]),
       dateDebut : this.fb.control('',[Validators.required]),
-      dateFin: this.fb.control('',[Validators.required])
+      dateFin: this.fb.control('',[Validators.required]),
+      category: this.fb.control('',[Validators.required])
     })
   }
   savePromotion(){
@@ -35,6 +40,9 @@ export class PopupComponent implements OnInit{
     this.promotionService.savePromotion(promotion).subscribe({
       next: data =>{
         alert(JSON.stringify(data));
+        //this.router.navigate(["/admin/dashboard"]);
+        //this.location.reload();
+        location.reload();
       },
       error: err => {
         console.log(err);
