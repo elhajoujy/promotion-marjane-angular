@@ -21,7 +21,7 @@ export class PromotionsComponent {
   page:number = 0;
   size:number = 0;
   totalPages : number = 0;
-
+  // TODO: change endpoint of json server api to spring boot api 
   url:string  = "http://localhost:8080/promoitons"
   isPopupVisible = false;
   isPopupUpdateVisibile = false;
