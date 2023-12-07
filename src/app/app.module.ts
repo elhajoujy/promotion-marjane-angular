@@ -11,7 +11,9 @@ import { DashboardResponsableComponent } from './features/dashboard-responsable/
 import { AdminDashboardComponent } from './features/dashboard-admin/admin-dashboard.component';
 import { PopupComponent } from './shared/popup/popup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminGeneralDashboardComponent } from './features/admin-general/admin-general-dashboard/admin-general-dashboard.component';
 import { PopupUpdateComponent } from './shared/popup-update/popup-update.component';
+
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { PopupUpdateComponent } from './shared/popup-update/popup-update.compone
     NavBarComponent,
     DashboardResponsableComponent,
     PopupComponent,
+    AdminGeneralDashboardComponent
     PopupUpdateComponent
   ],
   imports: [

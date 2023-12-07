@@ -1,5 +1,6 @@
 export enum StatusPromotion {
   ACCPETER,
-    REFUSER,
-    EN_ATTENTE
+  REFUSER,
+  EN_ATTENTE
 }
+
