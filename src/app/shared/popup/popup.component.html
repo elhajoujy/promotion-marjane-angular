@@ -1,11 +1,11 @@
 
 <!-- popup.component.html -->
 <div class="popup-container modal z-3 ">
-    <div>
-      <h1>Add promotion</h1>
-    </div>
-    <div class="popup">
-        {{promotionForm.value | json}}
+    <div class="popup w-50">
+      <div>
+        <h1>Add promotion</h1>
+      </div>
+        <!-- {{promotionForm.value | json}} -->
       <form [formGroup]="promotionForm" (ngSubmit)="savePromotion()" id="jsonForm">
         <div class="form-group">
           <label for="createdAt">Created At</label>

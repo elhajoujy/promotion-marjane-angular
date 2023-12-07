@@ -21,11 +21,10 @@ export class PromotionsComponent {
   page:number = 0;
   size:number = 0;
   totalPages : number = 0;
-  // TODO: change endpoint of json server api to spring boot api 
-  url:string  = "http://localhost:8080/promoitons"
+  // : change endpoint of json server api to spring boot api
+  url:string  = "http://localhost:8080/api/v1/promotions"
   isPopupVisible = false;
   isPopupUpdateVisibile = false;
-  Promotions: Array<any> = [];
 
   public promotionForm! : FormGroup;
 
@@ -56,6 +55,7 @@ export class PromotionsComponent {
     this.size = params['size'] || 5;
     this.promotionService.getByPage(this.page,this.size).subscribe({
       next: data => {
+        console.log(data);
         this.ListPromotions = data.content as Promotion[];
         this.totalPages = data.totalPages;
       },
@@ -78,11 +78,11 @@ export class PromotionsComponent {
 
   this.promotionService.getPromotions().subscribe({
     next: data => {
-      this.Promotions =data
+      this.ListPromotions =data.content as Promotion[];
     },
     error: err => {
       console.log(err);
-      
+
     }
   });
 
@@ -94,7 +94,7 @@ export class PromotionsComponent {
     this.promotionService.deletePromotion(promotion).subscribe({
       next: value => {
         //this.getProducts();
-        this.Promotions.filter(p => p.id != promotion.id);
+        this.ListPromotions.filter(p => p.id != promotion.id);
         location.reload();
       }
     })
