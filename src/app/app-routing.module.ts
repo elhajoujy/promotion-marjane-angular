@@ -8,7 +8,6 @@ import { DashboardResponsableComponent } from './features/dashboard-responsable/
 const routes: Routes = [
   { path:'admin/dashboard', component : AdminDashboardComponent,},
   {path: 'responsable/dashboard', component : DashboardResponsableComponent,},
-
 ];
 
 @NgModule({
