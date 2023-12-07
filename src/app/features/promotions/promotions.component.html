@@ -1,11 +1,11 @@
 <div class="container">
   <div class="d-flex justify-content-end pt-3">
-    <button  (click)="openPopup()" class="btn btn-primary">
+    <button title="open"  (click)="openPopup()" class="btn btn-primary">
       <i class="bi bi-plus"></i>
     </button>
   </div>
   <div class="d-flex justify-content-end pt-3">
-    <button  (click)="openPopupUpdate()" class="btn btn-primary">
+    <button title="updated" (click)="openPopupUpdate()" class="btn btn-primary">
       <i class="bi bi-search"></i>
     </button>
   </div>
@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <!-- <tr *ngFor="let item of ListPromotions"> -->
-      <tr *ngFor="let item of Promotions">
+      <tr *ngFor="let item of ListPromotions">
         <td scope="row">{{item.id}}</td>
         <td scope="row">{{item.precentage}} %</td>
         <td scope="row">{{item.description}}</td>
@@ -49,7 +49,7 @@
        [routerLink]="['/admin/dashboard']"
        [queryParams]="{page: i+1}"
        >
-       
+
         {{i + 1}}
       </a></li>
 
